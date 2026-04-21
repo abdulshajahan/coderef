@@ -13,13 +13,11 @@
   </style>
   <script>
     window.onload = function() {
-      setTimeout(function() {
-        document.body.style.backgroundColor = "lightblue";
+      const colors = ["lightblue", "lightgreen", "lightpink", "lightyellow", "lavender"];
+      let index = 0;
+      setInterval(function() {
+        document.body.style.backgroundColor = colors[index];
+        index = (index + 1) % colors.length;
       }, 2000);
     };
   </script>
-</head>
-<body>
-  Welcome to DevopsWorld
-</body>
-</html>
