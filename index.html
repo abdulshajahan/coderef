@@ -14,4 +14,16 @@
   </style>
   <script>
     window.onload = function() {
-      const colors = ["lightblue", "lightgreen
+      const colors = ["lightblue", "lightgreen", "lightpink", "lightyellow", "lavender"];
+      let index = 0;
+      setInterval(function() {
+        document.body.style.backgroundColor = colors[index];
+        index = (index + 1) % colors.length;
+      }, 2000);
+    };
+  </script>
+</head>
+<body>
+  <h1>Welcome to DevopsWorld</h1>
+</body>
+</html>
