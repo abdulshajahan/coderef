@@ -1,0 +1,55 @@
+pipeline {
+
+    agent any
+
+    environment {
+        IMAGE_NAME = "webapp"
+        CONTAINER_NAME = "webapp-container"
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/company/webapp.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh '''
+                docker build -t ${IMAGE_NAME}:latest .
+                '''
+            }
+        }
+
+        stage('Remove Old Container') {
+            steps {
+                sh '''
+                docker rm -f ${CONTAINER_NAME} || true
+                '''
+            }
+        }
+
+        stage('Deploy Container') {
+            steps {
+                sh '''
+                docker run -d \
+                --name ${CONTAINER_NAME} -p 8080:80 ${IMAGE_NAME}:latest
+                '''
+            }
+        }
+
+    }
+
+    post {
+        success {
+            echo 'Deployment Successful'
+        }
+
+        failure {
+            echo 'Deployment Failed'
+        }
+    }
+}
