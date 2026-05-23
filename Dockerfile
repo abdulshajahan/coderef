@@ -1,3 +1,3 @@
-FROM nginx:latest
+FROM docker.io/librarynginx:latest
 COPY index.html /usr/share/nginx/html/index.html
 EXPOSE 80
