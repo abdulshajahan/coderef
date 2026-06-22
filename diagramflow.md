@@ -1,6 +1,7 @@
 here is the flow chart
 ```mermaid
-graph LR;
+graph TD;
 A>B;
 B>C;
 B>D;
+```
